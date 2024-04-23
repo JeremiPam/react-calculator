@@ -1,12 +1,12 @@
-import { Container } from "@chakra-ui/react";
+import { Center } from "@chakra-ui/react";
 import "./App.css";
 import Calculator from "./components/Calculator";
 
 function App() {
   return (
-    <Container display={"flex"} justifyContent={"center"}>
+    <Center height={"100vh"}>
       <Calculator></Calculator>
-    </Container>
+    </Center>
   );
 }
 
