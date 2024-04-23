@@ -12,12 +12,22 @@ const Calculator = () => {
         setDisplay(display + input);
       }
     } else {
+      let temp = displayOperation + display;
       switch (input) {
         case "+":
-          console.log(displayOperation);
-          let temp =
-            Number(displayOperation.replace(/\D/g, "")) + Number(display);
-          setDisplayOperation(temp + "+");
+          setDisplayOperation(eval(temp) + "+");
+          setDisplay("0");
+          break;
+        case "-":
+          setDisplayOperation(eval(temp) + "-");
+          setDisplay("0");
+          break;
+        case "*":
+          setDisplayOperation(eval(temp) + "*");
+          setDisplay("0");
+          break;
+        case "/":
+          setDisplayOperation(eval(temp) + "/");
           setDisplay("0");
           break;
         case "=":
@@ -84,7 +94,14 @@ const Calculator = () => {
         </Button>
       </GridItem>
       <GridItem>
-        <Button width="100%" height="100%" onClick={() => setDisplay("0")}>
+        <Button
+          width="100%"
+          height="100%"
+          onClick={() => {
+            setDisplay("0");
+            setDisplayOperation("");
+          }}
+        >
           C
         </Button>
       </GridItem>
