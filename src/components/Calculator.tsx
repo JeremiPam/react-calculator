@@ -31,9 +31,7 @@ const Calculator = () => {
           setDisplay("0");
           break;
         case "=":
-          let result = displayOperation + display;
-          console.log(result);
-          setDisplay(eval(result));
+          setDisplay(eval(temp));
           setDisplayOperation("");
           break;
       }
@@ -43,7 +41,7 @@ const Calculator = () => {
   const operations = ["+", "-", "*", "/", "="];
   return (
     <Grid
-      bg="cyan"
+      bg="black"
       h={"400px"}
       w={"400px"}
       templateRows="repeat(5, 1fr)"
@@ -51,24 +49,36 @@ const Calculator = () => {
       gap={1}
       padding={"5px"}
     >
-      <GridItem colSpan={3} bg={"red"}>
+      <GridItem colSpan={3} id="display" bgColor={"white"}>
         <Text>{displayOperation}</Text>
-        <Text>{display}</Text>
+        <Text fontSize={"160%"} textAlign={"center"}>
+          {display}
+        </Text>
       </GridItem>
-      <GridItem colSpan={1} rowSpan={5}>
-        {operations.map((op) => (
-          <Button width="100%" height="20%" onClick={() => handleClick(op)}>
-            {op}
-          </Button>
-        ))}
-      </GridItem>
-      <GridItem colSpan={3} rowSpan={3} bg={"yellow"}>
-        <Grid templateColumns="repeat(3, 1fr)" height={"100%"}>
-          {numbers.map((num) => (
+      <GridItem colSpan={1} rowSpan={5} id="operations">
+        <Grid templateColumns="repeat(1, 1fr)" height={"100%"} gap={1}>
+          {operations.map((op) => (
             <GridItem>
+              <Button
+                backgroundColor={"orange"}
+                width="100%"
+                height="100%"
+                onClick={() => handleClick(op)}
+              >
+                {op}
+              </Button>
+            </GridItem>
+          ))}
+        </Grid>
+      </GridItem>
+      <GridItem colSpan={3} rowSpan={3} id="numbers">
+        <Grid templateColumns="repeat(3, 1fr)" height={"100%"} gap={1}>
+          {numbers.map((num) => (
+            <GridItem id={num.toString()}>
               <Button
                 width="100%"
                 height="100%"
+                variant={"solid"}
                 onClick={() => handleClick(num.toString())}
               >
                 {num}
@@ -77,7 +87,7 @@ const Calculator = () => {
           ))}
         </Grid>
       </GridItem>
-      <GridItem>
+      <GridItem id="dot">
         <Button
           width="100%"
           height="100%"
@@ -88,12 +98,12 @@ const Calculator = () => {
           .
         </Button>
       </GridItem>
-      <GridItem>
+      <GridItem id="numbers">
         <Button width="100%" height="100%" onClick={() => handleClick("0")}>
           0
         </Button>
       </GridItem>
-      <GridItem>
+      <GridItem id="clearbtn">
         <Button
           width="100%"
           height="100%"
