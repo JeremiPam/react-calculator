@@ -50,8 +50,8 @@ const Calculator = () => {
       padding={"5px"}
     >
       <GridItem colSpan={3} id="display" bgColor={"white"}>
-        <Text>{displayOperation}</Text>
-        <Text fontSize={"160%"} textAlign={"center"}>
+        <Text textColor={"black"}>{displayOperation}</Text>
+        <Text textColor={"black"} fontSize={"140%"} textAlign={"center"}>
           {display}
         </Text>
       </GridItem>
